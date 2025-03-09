@@ -15,8 +15,8 @@ var duplicateSeparatorRegex = regexp.MustCompile(`-{2,}`)
 var leadingTrailingSeparatorRegex = regexp.MustCompile(`^-|-$`)
 
 func dashCase(value string) string {
-	ascii_value := unidecode.Unidecode(value)
-	withoutUnwantedChars := string(unwantedCharsRegex.ReplaceAll([]byte(ascii_value), []byte("-")))
+	asciiValue := unidecode.Unidecode(value)
+	withoutUnwantedChars := string(unwantedCharsRegex.ReplaceAll([]byte(asciiValue), []byte("-")))
 	withoutDuplicateSeparators := string(duplicateSeparatorRegex.ReplaceAll([]byte(withoutUnwantedChars), []byte("-")))
 	withoutLeadingAndTrailingSeparator := string(leadingTrailingSeparatorRegex.ReplaceAll([]byte(withoutDuplicateSeparators), []byte("")))
 	return strings.ToLower(withoutLeadingAndTrailingSeparator)
